@@ -2,11 +2,11 @@ function runTests(testsObject) {
   for (functionName in testsObject) {
     testsObject[functionName].forEach(testEntry => {
       let testResult = testEntry.code();
-      if (testResult === testEntry.expectedOutput) {
-        console.log(testEntry.testDescription, 'PASSED')
+      if (testResult === testEntry.expected) {
+        console.log(testEntry.description, 'PASSED')
       } else {
-        console.error(testEntry.testDescription, 'FAILED');
-        console.warn('expected output:', testEntry.expectedOutput);
+        console.error(testEntry.description, 'FAILED');
+        console.warn('expected output:', testEntry.expected);
         console.warn('actual output:', testResult);
 
       };
@@ -27,44 +27,44 @@ function vowelCounter(word) {
 sampleTestsObject = {
   vowelCounter: [
     {
-      testDescription: "It recognizes a single vowel.",
+      description: "It recognizes a single vowel.",
       code: () => vowelCounter('a'),
-      expectedOutput: 1
+      expected: 1
     },
     {
-      testDescription: "It recognizes a single vowel regardless of case.",
+      description: "It recognizes a single vowel regardless of case.",
       code: () => vowelCounter('A'),
-      expectedOutput: 1
+      expected: 1
     },
     {
-      testDescription: "It recognizes a single vowel in a word with multiple characters.",
+      description: "It recognizes a single vowel in a word with multiple characters.",
       code: () => vowelCounter('cat'),
-      expectedOutput: 1
+      expected: 1
     },
     {
-      testDescription: "It recognizes multiple vowels in a single word.",
+      description: "It recognizes multiple vowels in a single word.",
       code: () => vowelCounter('cater'),
-      expectedOutput: 2
+      expected: 2
     },
     {
-      testDescription: "It recognizes vowels in a multiple-word sentence.",
+      description: "It recognizes vowels in a multiple-word sentence.",
       code: () => vowelCounter('cats catered the event'),
-      expectedOutput: 7
+      expected: 7
     },
     {
-      testDescription: "It recognizes vowels in a multiple word sentence regardless of capitalization.",
+      description: "It recognizes vowels in a multiple word sentence regardless of capitalization.",
       code: () => vowelCounter('CATS CATERED THE EVENT'),
-      expectedOutput: 7
+      expected: 7
     },
     {
-      testDescription: "It recognizes all vowels in a multiple-word sentence regardless of inconsistent capitalization.",
+      description: "It recognizes all vowels in a multiple-word sentence regardless of inconsistent capitalization.",
       code: () => vowelCounter('CaTS CATEReD ThE EveNT'),
-      expectedOutput: 7
+      expected: 7
     },
     {
-      testDescription: "It ignores non-alphabetical characters since they can't be vowels.",
+      description: "It ignores non-alphabetical characters since they can't be vowels.",
       code: () => vowelCounter('*&$92%'),
-      expectedOutput: 0
+      expected: 0
     },
   ],
 }
