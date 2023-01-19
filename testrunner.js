@@ -8,7 +8,6 @@ function runTests(testsObject) {
         console.error(testEntry.description, 'FAILED');
         console.warn('expected output:', testEntry.expected);
         console.warn('actual output:', testResult);
-
       };
     })
   }
