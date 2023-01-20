@@ -1,24 +1,31 @@
 function runTests(testsObject, failuresOnly) {
   let failures = 0;
+  console.log(`%c TESTING ${Object.keys(testsObject).length} FUNCTIONS...       `, 'color: white; background-color: green; font-size: 1.25rem; padding: 0.5rem;')
+
   for (functionName in testsObject) {
-    console.log('------- TESTING', functionName);
+    !failuresOnly ? console.warn(`%c ${functionName}`, `font-size: 1.1rem`) : null;
+    let passed = 0;
     testsObject[functionName].forEach(testEntry => {
       let testResult = testEntry.code();
       if (testResult === testEntry.expected) {
-        !failuresOnly ? console.log(testEntry.description, 'PASSED') : null;
+        !failuresOnly ? console.log(`%c ${functionName}: ${testEntry.description} PASSED `, `color: white; background-color: #00aa0022`) : null;
+        passed++;
       } else {
         failures++;
-        console.error(testEntry.description, 'FAILED');
-        console.warn('expected output:', testEntry.expected);
-        console.warn('actual output:', testResult);
+        console.error(`%c${functionName}: ${testEntry.description} FAILED `, `color: white; font-size: 1.05rem;`);
+        console.warn(`%c expected output: ${testEntry.expected} `, `color: white; font-size: 1.05rem`);
+        console.warn(`%c actual output: ${testResult} `, `color: white; font-size: 1.05rem`);
       };
     })
+    let totalTests = testsObject[functionName].length;
+    if (!failuresOnly && passed === totalTests) {
+      console.log(`%c ${passed}/${totalTests} PASSED FOR ${functionName} `, 'color: white; background-color: #00aa0022; font-size: 1.1rem; padding: 0.1rem');
+    }
   }
   if (!failures) {
-    console.log('\nALL TESTS PASSED!')
-    console.log('\n')
+    console.log('%c ALL TESTS PASSED!            ', 'color: white; background-color: green; font-size: 1.25rem; padding: 0.5rem;');
   } else {
-    console.error('\n' + failures + ' TESTS FAILED.')
+    console.error(`%c ${failures} TEST${failures > 1 ? 'S' : ''} FAILED. `, 'color: white; background-color: red; font-size: 1.1rem; padding: 0.5rem;')
   }
 }
 
