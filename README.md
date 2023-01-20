@@ -4,7 +4,7 @@
 
 1. Download the file **testrunner.js** from this repository
 2. Refer to the file in the **\<HEAD\>** of your **index.html**
-3. Edit **testrunner.js** to include your own tests by adding an object in with following format:
+3. Edit **testrunner.js** to include your own tests by adding an object with the following format:
 ```
 yourTestsObject = {
   firstFunctionToTest: [
@@ -31,4 +31,4 @@ yourTestsObject = {
   // etc.
 }
 ```
-4. Call **runTests(functionToTest)** in the terminal or within your program.
+4. Call **runTests(yourTestsObject)** in the terminal or within your program. Results are printed to the console.
