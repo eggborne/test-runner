@@ -6,7 +6,7 @@
 2. Refer to the file in the `<HEAD>` of your `index.html`
 3. Edit `testrunner.js` to include your own tests by adding an object with the following format:
 ```
-yourTestsObject = {
+const yourTestsObject = {
 
   firstFunctionToTest: [
     {
