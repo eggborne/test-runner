@@ -1,32 +1,42 @@
-function runTests(testsObject, failuresOnly) {
-  let failures = 0;
-  console.log(`%c TESTING ${Object.keys(testsObject).length} FUNCTIONS...       `, 'color: white; background-color: green; font-size: 1.25rem; padding: 0.5rem;')
+const defaultOptions = {
+  failuresOnly: false,
+  fancy: true,
+  keepConsole: false,
+}
 
+function runTests(testsObject, options=defaultOptions) {
+  let startedAt = performance.now();
+  !options.keepConsole && console.clear();
+  let failures = 0;
+  console.log(`%cTESTING ${Object.keys(testsObject).length} FUNCTIONS...       `, options.fancy && `color: white; background-color: green; font-size: 1.25rem; padding: 0.5rem 1rem;`);
   for (functionName in testsObject) {
-    !failuresOnly ? console.warn(`%c ${functionName}`, `font-size: 1.1rem`) : null;
+    let totalTests = testsObject[functionName].length;
+    !options.failuresOnly && console.warn(`%c ${functionName}: ${totalTests} TESTS`, options.fancy && `font-size: 1.1rem`);
     let passed = 0;
     testsObject[functionName].forEach(testEntry => {
       let testResult = testEntry.code();
       if (testResult === testEntry.expected) {
-        !failuresOnly ? console.log(`%c ${functionName}: ${testEntry.description} PASSED `, `color: white; background-color: #00aa0022`) : null;
+        !options.failuresOnly && console.log(`%c${functionName}: ${testEntry.description} PASSED `, options.fancy && `color: white; background-color: #00aa0022`);
         passed++;
       } else {
         failures++;
-        console.error(`%c${functionName}: ${testEntry.description} FAILED `, `color: white; font-size: 1.05rem;`);
-        console.warn(`%c expected output: ${testEntry.expected} `, `color: white; font-size: 1.05rem`);
-        console.warn(`%c actual output: ${testResult} `, `color: white; font-size: 1.05rem`);
+        console.error(`%c${functionName}: ${testEntry.description} FAILED `, options.fancy && `color: white; font-size: 1.05rem;`);
+        console.warn(`%c expected output: ${testEntry.expected} `, options.fancy && `color: white; font-size: 1.05rem`);
+        console.warn(`%c actual output: ${testResult} `, options.fancy && `color: white; font-size: 1.05rem`);
       };
     })
-    let totalTests = testsObject[functionName].length;
-    if (!failuresOnly && passed === totalTests) {
-      console.log(`%c ${passed}/${totalTests} PASSED FOR ${functionName} `, 'color: white; background-color: #00aa0022; font-size: 1.1rem; padding: 0.1rem');
+    if (passed === totalTests) {
+      !options.failuresOnly && console.log(`%c ${passed}/${totalTests} PASSED FOR ${functionName} `, options.fancy && `color: white; background-color: #00aa0066; font-size: 1.1rem; padding: 0.1rem`);
+    } else {
+      !options.failuresOnly && console.log(`%c ${passed}/${totalTests} PASSED FOR ${functionName} `, options.fancy && `color: white; background-color: #aa000066; font-size: 1.1rem; padding: 0.1rem`);
     }
   }
   if (!failures) {
-    console.log('%c ALL TESTS PASSED!            ', 'color: white; background-color: green; font-size: 1.25rem; padding: 0.5rem;');
+    console.log(`%cALL TESTS PASSED!            `, options.fancy && `color: white; background-color: green; font-size: 1.25rem; padding: 0.5rem 1rem;`);
   } else {
-    console.error(`%c ${failures} TEST${failures > 1 ? 'S' : ''} FAILED. `, 'color: white; background-color: red; font-size: 1.1rem; padding: 0.5rem;')
+    console.error(`%c ${failures} TEST${failures > 1 ? `S` : ``} FAILED.             `, options.fancy && `color: #eee; background-color: #aa0000; font-size: 1.1rem; padding: 0.5rem 1rem;`)
   }
+  !options.failuresOnly && console.log(`took ${parseFloat((performance.now() - startedAt).toFixed(3))} ms`)
 }
 
 // sample functions
