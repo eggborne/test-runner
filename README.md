@@ -37,6 +37,8 @@ const yourTestsObject = {
 ```
 4. Call `runTests(yourTestsObject)` in the terminal or within your program. Results are printed to the console.
 
+> `runTests` also returns a boolean indicating whether **all tests** were passed.
+
 ### Options
 A second argument can be passed to `runTests()` as follows:
 
