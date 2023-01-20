@@ -2,9 +2,9 @@
 
 ### How to Use:
 
-1. Download the file **testrunner.js** from this repository
-2. Refer to the file in the **\<HEAD\>** of your **index.html**
-3. Edit **testrunner.js** to include your own tests by adding an object with the following format:
+1. Download the file `testrunner.js` from this repository
+2. Refer to the file in the `\<HEAD\>` of your `index.html`
+3. Edit `testrunner.js` to include your own tests by adding an object with the following format:
 ```
 yourTestsObject = {
   firstFunctionToTest: [
@@ -31,4 +31,21 @@ yourTestsObject = {
   // etc.
 }
 ```
-4. Call **runTests(yourTestsObject)** in the terminal or within your program. Results are printed to the console.
+4. Call `runTests(yourTestsObject)` in the terminal or within your program. Results are printed to the console.
+
+### Options
+A second argument can be passed to `runTests()` as follows:
+
+```
+runTests(yourTestsObject, {
+	failuresOnly,
+	fancy,
+	keepConsole
+})
+```
+
+| option | type | default | description 
+| ------ | ------ | ------ | ------
+| `failuresOnly` | boolean | `false` | Minimal output, only lists failing tests
+| `fancy` | boolean | `true` | Produces fancy CSS-styled console messages
+| `keepConsole` | boolean | `false` | Retains console contents when run
