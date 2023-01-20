@@ -3,10 +3,11 @@
 ### How to Use:
 
 1. Download the file `testrunner.js` from this repository
-2. Refer to the file in the `\<HEAD\>` of your `index.html`
+2. Refer to the file in the `<HEAD>` of your `index.html`
 3. Edit `testrunner.js` to include your own tests by adding an object with the following format:
 ```
 yourTestsObject = {
+
   firstFunctionToTest: [
     {
       description: "It tests to see if firstFunctionToTest works correctly with argument(s) arg1ForTest1.",
@@ -20,6 +21,7 @@ yourTestsObject = {
     },
     // etc.
   ],
+
   secondFunctionToTest: [
     {
       description: "It tests to see if secondFunctionToTest works correctly with argument(s) arg1ForTest2.",
@@ -28,7 +30,9 @@ yourTestsObject = {
     },
     // etc.
   ],
+  
   // etc.
+
 }
 ```
 4. Call `runTests(yourTestsObject)` in the terminal or within your program. Results are printed to the console.
@@ -38,14 +42,14 @@ A second argument can be passed to `runTests()` as follows:
 
 ```
 runTests(yourTestsObject, {
-	failuresOnly,
-	fancy,
-	keepConsole
-})
+  failuresOnly,
+  fancy,
+  keepConsole
+});
 ```
 
 | option | type | default | description 
 | ------ | ------ | ------ | ------
 | `failuresOnly` | boolean | `false` | Minimal output, only lists failing tests
 | `fancy` | boolean | `true` | Produces fancy CSS-styled console messages
-| `keepConsole` | boolean | `false` | Retains console contents when run
+| `keepConsole` | boolean | `false` | Retains console contents when logging results
