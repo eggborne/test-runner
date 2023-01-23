@@ -16,19 +16,19 @@ function runTests(testsObject, options=defaultOptions) {
     testsObject[functionName].forEach(testEntry => {
       let testResult = testEntry.code();
       if (testResult === testEntry.expected) {
-        !options.failuresOnly && console.log(`%c${functionName}: ${testEntry.description} PASSED `, options.fancy && `color: white; background-color: #00aa0022`);
+        !options.failuresOnly && console.log(`%c${functionName}: ${testEntry.description} PASSED `, options.fancy && `padding: 0.5rem; color: white; background-color: #00aa00aa`);
         passed++;
       } else {
         failures++;
-        console.error(`%c${functionName}: ${testEntry.description} FAILED `, options.fancy && `color: white; font-size: 1.05rem;`);
-        console.warn(`%c expected output: ${testEntry.expected} `, options.fancy && `color: white; font-size: 1.05rem`);
-        console.warn(`%c actual output: ${testResult} `, options.fancy && `color: white; font-size: 1.05rem`);
+        console.error(`%c${functionName}: ${testEntry.description} FAILED `, options.fancy && `color: white; background-color: #aa0000bb; font-size: 1rem;`);
+        console.warn(`%c expected output: ${testEntry.expected} `, options.fancy && `font-size: 1.05rem`);
+        console.warn(`%c actual output: ${testResult} `, options.fancy && `font-size: 1.05rem`);
       };
     })
     if (passed === totalTests) {
-      !options.failuresOnly && console.log(`%c ${passed}/${totalTests} PASSED FOR ${functionName} `, options.fancy && `color: white; background-color: #00aa0066; font-size: 1.1rem; padding: 0.1rem`);
+      !options.failuresOnly && console.log(`%c ${passed}/${totalTests} PASSED FOR ${functionName} `, options.fancy && `color: white; background-color: #00aa00; font-size: 1.1rem; padding: 0.1rem`);
     } else {
-      !options.failuresOnly && console.log(`%c ${passed}/${totalTests} PASSED FOR ${functionName} `, options.fancy && `color: white; background-color: #aa000066; font-size: 1.1rem; padding: 0.1rem`);
+      !options.failuresOnly && console.log(`%c ${passed}/${totalTests} PASSED FOR ${functionName} `, options.fancy && `color: white; background-color: #aa0000bb; font-size: 1.1rem; padding: 0.1rem`);
     }
   }
   if (!failures) {
@@ -79,7 +79,7 @@ sampleTestsObject = {
     {
       description: "It recognizes a single vowel in a word with multiple characters.",
       code: () => vowelCounter('cat'),
-      expected: 1
+      expected: 10
     },
     {
       description: "It recognizes multiple vowels in a single word.",
